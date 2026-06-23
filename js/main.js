@@ -135,10 +135,13 @@
     updateParallax();
   }
 
-  // ---- HERO vídeo ----
+  // ---- HERO vídeo (no mobile/conexão lenta usa só o poster — leve e sem jank) ----
+  var conn = navigator.connection || {};
+  var slowNet = /(^|-)2g/.test(conn.effectiveType || '');
+  var lightHero = reduce || saveData || slowNet || innerWidth <= 768;
   var hv = document.getElementById('heroVideo');
   if (hv) {
-    if (reduce || saveData) { var s = hv.querySelector('source'); if (s) s.remove(); hv.removeAttribute('autoplay'); hv.load(); }
+    if (lightHero) { var s = hv.querySelector('source'); if (s) s.remove(); hv.removeAttribute('autoplay'); hv.load(); }
     else { var p = hv.play(); if (p && p.catch) p.catch(function () {}); }
   }
 
@@ -206,18 +209,19 @@
   var form = document.getElementById('orcForm');
   if (form) {
     var err = document.getElementById('formErr'), okBox = document.getElementById('formOk');
-    var req = ['f_nome', 'f_empresa', 'f_tel', 'f_email'];
+    var req = ['f_nome', 'f_tel'];   // só nome + telefone obrigatórios (envio é por WhatsApp)
     function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
     function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
     function check() {
       var bad = false;
       req.forEach(function (id) {
         var e = document.getElementById(id), ok = e.value.trim().length >= 2;
-        if (id === 'f_email') ok = emailOk(e.value.trim());
         e.classList.toggle('bad', !ok); if (!ok) bad = true;
       });
+      var em = document.getElementById('f_email');   // e-mail é opcional, mas se preenchido tem que ser válido
+      if (em.value.trim() && !emailOk(em.value.trim())) { em.classList.add('bad'); bad = true; } else { em.classList.remove('bad'); }
       var cons = document.getElementById('f_consent');
-      if (!cons.checked) { bad = true; }
+      if (!cons.checked) bad = true;
       return !bad;
     }
     form.addEventListener('submit', function (e) {

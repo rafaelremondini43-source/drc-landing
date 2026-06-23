@@ -352,6 +352,32 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .tokens{overflow-wrap:break-word}
 .hero-media,.cine .media{will-change:transform}   /* padrão Krono: camada promovida p/ parallax fluido */
 
+/* ===== Melhorias do estudo de mapa de calor (CRO / atenção) ===== */
+/* hero: 1 CTA dominante + link de texto secundário */
+.hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--ink); padding:10px 4px; transition:color .25s}
+.hero-textlink .ar{color:var(--sky); transition:transform .3s var(--ease)}
+.hero-textlink:hover{color:#fff} .hero-textlink:hover .ar{transform:translateY(3px)}
+/* CTA na seção drill-path (zona quente sem conversão) */
+.sig-cta{margin-top:32px}
+/* prova social (selos) junto ao botão de envio do form */
+.form-trust{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:6px 0 2px}
+.form-trust .seal-tile{width:46px; height:46px; padding:5px}
+.form-trust .ft-txt{font-size:.82rem; color:var(--muted); flex:1; min-width:200px; line-height:1.4}
+/* CTA flutuante também no desktop, após o hero */
+@media(min-width:861px){.cta-float{display:inline-flex; left:auto; right:24px; bottom:24px; padding:14px 24px}}
+/* nav: vermelho cheio só após rolar (na 1ª dobra fica outline p/ não competir com o CTA do hero) */
+.nav:not(.small) .links a.navbtn{background:transparent; color:var(--ink); border-color:rgba(255,255,255,.45)}
+.nav:not(.small) .links a.navbtn:hover{background:rgba(255,255,255,.08); border-color:#fff}
+/* alvos de toque (mobile) */
+.burger{width:44px; height:44px}
+.consent{padding:7px 0}
+/* afordância dos CTAs dos cards de segmento */
+.seg .go{font-family:var(--font-body); font-weight:600; font-size:.84rem; text-transform:none; letter-spacing:0}
+/* hero: primário full-width no mobile */
+@media(max-width:640px){ .hero .btn-row .btn.big{width:100%; justify-content:center} }
+/* drill-path: rótulos maiores no mobile (SVG encolhe muito em tela estreita) */
+@media(max-width:640px){ .sig-label{font-size:30px} }
+
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation:none !important; transition-duration:.01ms !important}
