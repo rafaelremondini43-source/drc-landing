@@ -21,8 +21,8 @@
 }
 
 *{box-sizing:border-box; margin:0; padding:0}
-html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+html{-webkit-text-size-adjust:100%}
+/* sem scroll-behavior:smooth — o Lenis cuida da rolagem (CSS smooth + Lenis brigam e causam travamento) */
 body{
   background:var(--bg); color:var(--ink); font-family:var(--font-body);
   line-height:1.62; -webkit-font-smoothing:antialiased; overflow-x:hidden;
@@ -176,7 +176,7 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .signature .wrap{position:relative; z-index:1}
 .sig-head{max-width:60ch; margin-bottom:44px}
 .sig-head h2{margin-top:18px}
-.sig-stage{position:relative; border:1px solid var(--line); background:rgba(7,14,34,.45); -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px)}
+.sig-stage{position:relative; border:1px solid var(--line); background:rgba(7,14,34,.55)}
 .sig-stage svg{width:100%; height:auto; display:block}
 .drill-ground{fill:rgba(255,255,255,.03)}
 .drill-surface{stroke:var(--line); stroke-width:1.5; fill:none}
@@ -350,7 +350,7 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 
 /* helpers */
 .tokens{overflow-wrap:break-word}
-/* will-change removido: o translate3d do parallax já promove a camada durante o scroll, sem custo permanente de GPU */
+.hero-media,.cine .media{will-change:transform}   /* padrão Krono: camada promovida p/ parallax fluido */
 
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce){

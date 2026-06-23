@@ -169,16 +169,21 @@
 
     if (reduce) { setAt(1); if (bit) bit.style.opacity = '0'; return; }
     setAt(0);
-    var ticking = false;
+    var visible = true;
     function onScroll() {
       var r = stage.getBoundingClientRect();
       var vh = innerHeight || document.documentElement.clientHeight;
       var p = (vh * 0.80 - r.top) / (vh * 0.60);
       setAt(p);
     }
-    addEventListener('scroll', function () { if (!ticking) { requestAnimationFrame(function () { onScroll(); ticking = false; }); ticking = true; } }, { passive: true });
-    addEventListener('resize', onScroll, { passive: true });
-    onScroll();
+    // só calcula quando a seção está perto da viewport (evita reflow forçado no scroll do resto da página)
+    if ('IntersectionObserver' in window) {
+      visible = false;
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) onScroll(); }, { rootMargin: '240px 0px 240px 0px' }).observe(stage);
+    }
+    var ticking = false;
+    addEventListener('scroll', function () { if (!ticking && visible) { requestAnimationFrame(function () { onScroll(); ticking = false; }); ticking = true; } }, { passive: true });
+    addEventListener('resize', function () { if (visible) onScroll(); }, { passive: true });
   })();
 
   // ---- LAZY MAP ----
