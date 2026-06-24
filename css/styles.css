@@ -169,6 +169,10 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .strip .item{display:flex; flex-direction:column; gap:3px}
 .strip .item b{font-family:var(--font-display); font-size:1.7rem; font-weight:700; color:var(--ink); line-height:1}
 .strip .item span{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint)}
+/* ISO: cada disciplina alinhada sob a sua norma (Qualidade sob 9001, etc.) */
+.strip .iso-item{display:grid; grid-template-columns:auto auto auto auto; column-gap:16px; row-gap:5px; align-items:baseline}
+.strip .iso-item b{font-size:1.35rem}
+.strip .iso-item .iso-pre{color:var(--sky)}
 
 /* === DRILL-PATH (assinatura) === */
 .signature{background:var(--bg-2); padding:var(--sec) 0; overflow:hidden}
