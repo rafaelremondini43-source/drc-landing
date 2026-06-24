@@ -208,7 +208,7 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .steps{margin-top:56px; border-top:1px solid var(--line)}
 .step{display:grid; grid-template-columns:96px 1fr auto; gap:30px; padding:38px 0; border-bottom:1px solid var(--line); align-items:center; transition:background .4s}
 .step:hover{background:linear-gradient(90deg,rgba(89,165,216,.05),transparent)}
-.step .n{font-family:var(--font-mono); font-weight:500; font-size:2.4rem; color:transparent; -webkit-text-stroke:1px var(--sky); transition:color .4s}
+.step .n{font-family:var(--font-mono); font-weight:600; font-size:2.4rem; color:var(--sky); -webkit-text-stroke:0; transition:color .4s}
 .step:hover .n{color:var(--sky)}
 .step .b b{font-family:var(--font-display); font-size:clamp(1.35rem,2.4vw,1.9rem); font-weight:600; display:block; margin-bottom:8px; letter-spacing:-.01em}
 .step .b p{color:var(--muted); max-width:60ch; font-size:1.04rem}
