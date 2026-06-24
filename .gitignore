@@ -1,3 +1,7 @@
 ﻿assets/src/
 .DS_Store
 *.log
+
+.weight-baseline.json
+.served-baseline.json
+.perf-baseline.json
