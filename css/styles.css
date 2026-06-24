@@ -152,8 +152,10 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .hero .trust{margin-top:32px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.05em;
   color:var(--muted); display:flex; align-items:center; gap:10px; flex-wrap:wrap}
 .hero .trust .dot{width:5px;height:5px;border-radius:50%;background:var(--sky);opacity:.85}
-.hero-photo{position:relative; aspect-ratio:4/5; max-height:76vh; overflow:hidden; border:1px solid var(--line)}
-.hero-photo img{width:100%; height:100%; object-fit:cover}
+.hero-photo{position:relative; aspect-ratio:4/5; max-height:76vh; overflow:hidden; border:1px solid var(--line); background:var(--bg-2)}
+.hero-photo img,.hero-photo video{width:100%; height:100%; object-fit:cover; display:block}
+.hero-photo .kenburns{transform-origin:62% 45%; animation:kenburns 26s ease-in-out infinite alternate; will-change:transform}
+@keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.13) translate(-1.5%,-1%)}}
 .hero-photo::after{content:""; position:absolute; inset:0; border:1px solid rgba(255,255,255,.06); pointer-events:none}
 @media(max-width:860px){
   .hero{padding:118px 0 54px}
