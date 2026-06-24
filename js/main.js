@@ -112,7 +112,7 @@
       if (p < 1) requestAnimationFrame(step); else el.textContent = fmt(to) + suf;
     });
   }
-  function fmt(n) { return String(Math.round(n)); }   // sem separador de milhar (ano 2000 fica "2000")
+  function fmt(n) { return Math.round(n).toLocaleString('pt-BR'); }   // 1000 -> "1.000" (o ano 2000 é estático, não conta)
 
   // ---- NAV compacta + PARALLAX ----
   var nav = document.getElementById('nav');
