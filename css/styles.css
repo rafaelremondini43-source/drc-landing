@@ -9,7 +9,7 @@
   --navy:#012B81; --navy-deep:#011d5e; --navy-title:#012B81; --sky:#1E73BE; --sky-soft:#59A5D8;
   --cine:#0a1430; --red:#E5342B; --red-bright:#ff4a40; --green:#159a52;
   --bg:#ffffff; --bg-2:#eef3fa; --surface:#ffffff; --surface-2:#f4f8fd;
-  --ink:#0c1a36; --muted:#54627a; --faint:#8595ab;
+  --ink:#0c1a36; --muted:#54627a; --faint:#5f6e87;
   --line:rgba(10,28,64,.14); --line-2:rgba(10,28,64,.07);
 
   --font-display:'Roboto Condensed',Arial Narrow,system-ui,sans-serif;
@@ -146,21 +146,24 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .hero-bg{position:absolute; inset:0; z-index:0}
 .hero-bg video,.hero-bg img{width:100%; height:100%; object-fit:cover; display:block}
 .hero-bg::after{content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,#f7fafd 0%,rgba(247,250,253,.99) 44%,rgba(247,250,253,.72) 60%,rgba(247,250,253,.22) 84%,transparent 100%),
-             linear-gradient(0deg,rgba(247,250,253,.5),transparent 34%)}
+  background:linear-gradient(90deg,#f7fafd 0%,rgba(247,250,253,.98) 42%,rgba(247,250,253,.9) 60%,rgba(247,250,253,.55) 80%,rgba(247,250,253,.16) 100%),
+             linear-gradient(0deg,rgba(247,250,253,.7),transparent 44%)}
 .hero .wrap{position:relative; z-index:2; width:100%}
 .hero-text{max-width:640px}
 .hero h1{max-width:15ch; font-size:clamp(2.3rem,4.8vw,4.2rem); line-height:1.02}
-.hero h1 .g{color:var(--sky)}
-.hero .lead{margin-top:24px; max-width:48ch}
+.hero h1 .g{color:var(--navy)}
+.hero .lead{margin-top:24px; max-width:48ch; color:#36435d}
 .hero .btn-row{margin-top:34px}
-.hero .trust{margin-top:32px; font-family:var(--font-mono); font-size:.74rem; letter-spacing:.05em;
-  color:var(--muted); display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-.hero .trust .dot{width:5px;height:5px;border-radius:50%;background:var(--sky);opacity:.85}
+.hero .kicker{color:var(--navy); font-weight:700}
+.hero .trust{margin-top:32px; font-family:var(--font-body); font-size:.76rem; font-weight:500; letter-spacing:.02em;
+  color:var(--ink); display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.hero .trust .dot{width:5px;height:5px;border-radius:50%;background:var(--navy);opacity:1}
+/* halo claro p/ todo texto do hero descolar do vídeo de fundo */
+.hero .kicker,.hero h1,.hero .lead,.hero .trust,.hero-textlink{text-shadow:0 1px 2px rgba(255,255,255,.88),0 0 16px rgba(247,250,253,.55)}
 @media(max-width:860px){
   .hero{padding:116px 0 56px}
   .hero-text{max-width:none}
-  .hero-bg::after{background:linear-gradient(0deg,rgba(247,250,253,.97) 34%,rgba(247,250,253,.72) 64%,rgba(247,250,253,.55)),linear-gradient(90deg,rgba(247,250,253,.55),transparent 72%)}
+  .hero-bg::after{background:linear-gradient(0deg,rgba(247,250,253,.98) 48%,rgba(247,250,253,.86) 72%,rgba(247,250,253,.64) 100%),linear-gradient(90deg,rgba(247,250,253,.6),transparent 82%)}
 }
 
 /* CREDIBILITY STRIP */
@@ -402,9 +405,9 @@ html.cursor-custom .qa summary{cursor:none}
 
 /* ===== Melhorias do estudo de mapa de calor (CRO / atenção) ===== */
 /* hero: 1 CTA dominante + link de texto secundário */
-.hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--ink); padding:10px 4px; transition:color .25s}
-.hero-textlink .ar{color:var(--sky); transition:transform .3s var(--ease)}
-.hero-textlink:hover{color:var(--navy)} .hero-textlink:hover .ar{transform:translateY(3px)}
+.hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--navy); padding:10px 2px; border-bottom:2px solid rgba(1,43,129,.32); transition:color .25s,border-color .25s}
+.hero-textlink .ar{color:var(--navy); transition:transform .3s var(--ease)}
+.hero-textlink:hover{color:var(--navy); border-bottom-color:var(--navy)} .hero-textlink:hover .ar{transform:translateY(3px)}
 /* CTA na seção drill-path (zona quente sem conversão) */
 .sig-cta{margin-top:32px}
 /* prova social (selos) junto ao botão de envio do form */
