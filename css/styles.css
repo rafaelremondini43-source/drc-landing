@@ -400,7 +400,7 @@ html.cursor-custom .qa summary{cursor:none}
 /* hero: 1 CTA dominante + link de texto secundário */
 .hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--ink); padding:10px 4px; transition:color .25s}
 .hero-textlink .ar{color:var(--sky); transition:transform .3s var(--ease)}
-.hero-textlink:hover{color:#fff} .hero-textlink:hover .ar{transform:translateY(3px)}
+.hero-textlink:hover{color:var(--navy)} .hero-textlink:hover .ar{transform:translateY(3px)}
 /* CTA na seção drill-path (zona quente sem conversão) */
 .sig-cta{margin-top:32px}
 /* prova social (selos) junto ao botão de envio do form */
