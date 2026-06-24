@@ -352,6 +352,50 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .tokens{overflow-wrap:break-word}
 .hero-media,.cine .media{will-change:transform}   /* padrão Krono: camada promovida p/ parallax fluido */
 
+/* ===== v2: specs de frota, capacidades, comparação, FAQ ===== */
+.stat .num .u{color:var(--sky); font-size:.66em}
+.fleet-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:14px; margin-top:40px}
+.fcard{border:1px solid var(--line); background:rgba(255,255,255,.02); padding:20px 22px; transition:border-color .3s,background .3s}
+.fcard:hover{border-color:var(--sky); background:rgba(89,165,216,.05)}
+.fc-code{font-family:var(--font-display); font-weight:700; font-size:1.5rem; letter-spacing:-.01em}
+.fc-code em{font-style:normal; font-family:var(--font-mono); font-size:.78rem; color:var(--sky); margin-left:6px}
+.fc-model{font-size:.84rem; color:var(--muted); margin:4px 0 14px}
+.fc-specs{display:flex; flex-direction:column; gap:7px; border-top:1px solid var(--line-2); padding-top:12px}
+.fc-specs span{font-family:var(--font-mono); font-size:.82rem; color:var(--faint)}
+.fc-specs b{color:var(--ink); font-weight:500}
+.ft-note{font-size:.8rem; color:var(--faint); margin-top:16px; max-width:84ch}
+.capgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:36px}
+.cap{border-left:2px solid var(--sky); padding:4px 0 4px 18px}
+.cap-v{font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,2.6vw,2rem); line-height:1.05}
+.cap-l{font-size:.84rem; color:var(--muted); margin-top:8px; max-width:26ch; line-height:1.4}
+@media(max-width:760px){.capgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.capgrid{grid-template-columns:1fr}}
+/* comparação vala × MND */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:50px}
+.compare .col{border:1px solid var(--line); padding:clamp(24px,3vw,34px); background:var(--surface)}
+.compare .col.bad{background:transparent; border-style:dashed}
+.compare .col h3{font-size:1.2rem; margin-bottom:22px; font-weight:600}
+.compare .col.bad h3{color:var(--muted)} .compare .col.good h3{color:var(--sky)}
+.compare ul{list-style:none; display:flex; flex-direction:column; gap:15px}
+.compare li{display:flex; gap:13px; font-size:1.02rem; color:var(--ink); line-height:1.5}
+.compare li .i{flex:0 0 auto; margin-top:3px; width:18px; height:18px}
+.compare .col.bad li{color:var(--muted)} .compare .col.bad li .i{color:var(--red)}
+.compare .col.good li .i{color:var(--sky)}
+@media(max-width:760px){.compare{grid-template-columns:1fr}}
+/* FAQ */
+.faq{margin-top:48px; border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa summary{list-style:none; cursor:pointer; padding:24px 4px; display:flex; gap:24px; align-items:center; justify-content:space-between;
+  font-family:var(--font-display); font-weight:600; font-size:clamp(1.1rem,1.9vw,1.45rem); letter-spacing:-.01em}
+html.cursor-custom .qa summary{cursor:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa .ic{flex:0 0 auto; width:30px; height:30px; border:1px solid var(--line); display:grid; place-items:center; color:var(--sky); transition:.35s var(--ease); font-family:var(--font-mono)}
+.qa[open] .ic{transform:rotate(45deg); background:var(--sky); color:var(--cine); border-color:var(--sky)}
+.qa .ans{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s var(--ease)}
+.qa[open] .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{color:var(--muted); font-size:1.04rem; padding:0 4px 26px; max-width:78ch}
+
 /* ===== Melhorias do estudo de mapa de calor (CRO / atenção) ===== */
 /* hero: 1 CTA dominante + link de texto secundário */
 .hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--ink); padding:10px 4px; transition:color .25s}
