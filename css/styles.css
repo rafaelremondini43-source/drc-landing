@@ -55,10 +55,10 @@ section{position:relative}
 .eyebrow-row{margin-bottom:28px}
 
 /* CURSOR */
-.cursor{position:fixed; top:0; left:0; width:34px; height:34px; border:1px solid var(--sky);
+.cursor{position:fixed; top:0; left:0; width:34px; height:34px; border:1px solid var(--sky); border-radius:50%;
   pointer-events:none; z-index:9999; transform:translate(-50%,-50%);
   transition:width .3s var(--ease),height .3s var(--ease),background .3s,opacity .3s}
-.cursor-dot{position:fixed; top:0; left:0; width:5px; height:5px; background:var(--sky);
+.cursor-dot{position:fixed; top:0; left:0; width:5px; height:5px; background:var(--sky); border-radius:50%;
   pointer-events:none; z-index:9999; transform:translate(-50%,-50%)}
 body.hovering .cursor{width:58px; height:58px; background:rgba(89,165,216,.12)}
 html:not(.cursor-custom) .cursor,html:not(.cursor-custom) .cursor-dot{display:none}  /* sem JS / pointer grosso: nenhum cursor falso congelado */
@@ -145,7 +145,7 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .hero{min-height:100vh; min-height:100svh; display:flex; align-items:center; overflow:hidden; padding:130px 0 70px; background:var(--bg)}
 .hero-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(32px,5vw,72px); align-items:center; width:100%}
 .hero-text{position:relative; z-index:2}
-.hero h1{max-width:15ch}
+.hero h1{max-width:15ch; font-size:clamp(2.2rem,4.4vw,3.9rem); line-height:1.02}
 .hero h1 .g{color:var(--sky)}
 .hero .lead{margin-top:24px; max-width:48ch}
 .hero .btn-row{margin-top:34px}

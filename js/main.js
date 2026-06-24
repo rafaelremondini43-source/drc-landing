@@ -98,7 +98,23 @@
       io.unobserve(en.target);
     });
   }, { threshold: 0.16, rootMargin: '0px 0px -7% 0px' });
-  document.querySelectorAll('.reveal, .count').forEach(function (el) { io.observe(el); });
+  document.querySelectorAll('.reveal, .lines, .count').forEach(function (el) { io.observe(el); });
+
+  // garante que tudo que já está na 1ª dobra (hero) apareça de imediato — não depende do timing do observer
+  function revealInView() {
+    var vh = innerHeight || document.documentElement.clientHeight || 800;
+    document.querySelectorAll('.reveal, .lines, .count').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.96 && r.bottom > 0) {
+        el.classList.add('in');
+        el.querySelectorAll('.count').forEach(startCount);
+        if (el.classList.contains('count')) startCount(el);
+        io.unobserve(el);
+      }
+    });
+  }
+  revealInView();
+  addEventListener('load', revealInView);
 
   function startCount(el) {
     if (el.dataset.done) return; el.dataset.done = '1';
