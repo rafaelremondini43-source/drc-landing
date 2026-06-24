@@ -14,7 +14,7 @@
 
   --font-display:'Roboto Condensed',Arial Narrow,system-ui,sans-serif;
   --font-body:'Inter',system-ui,-apple-system,sans-serif;
-  --font-mono:'Roboto Mono',ui-monospace,monospace;
+  --font-mono:'Inter',system-ui,-apple-system,sans-serif;   /* antes Roboto Mono — trocado p/ sans limpo (rótulos/specs sem cara de código) */
 
   --maxw:1320px; --pad:clamp(20px,4vw,72px); --sec:clamp(88px,12vh,180px);
   --ease:cubic-bezier(.215,.61,.355,1); --ease-soft:cubic-bezier(.39,.575,.565,1);
@@ -42,8 +42,8 @@ h1,h2,h3{font-family:var(--font-display); font-weight:700; line-height:1.03; let
 .h3{font-size:clamp(1.3rem,2.2vw,1.9rem); font-weight:600}
 
 /* KICKERS / rótulos — mono, maiúsculo só aqui (sinaliza “técnico”) */
-.kicker{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.24em;
-  text-transform:uppercase; color:var(--sky); font-weight:500;
+.kicker{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--sky); font-weight:600;
   display:inline-flex; align-items:center; gap:14px}
 .kicker::before{content:""; width:32px; height:1px; background:var(--sky); opacity:.8}
 
