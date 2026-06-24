@@ -222,7 +222,7 @@
   // ---- WHATSAPP: links diretos + builder do formulário ----
   function waLink(text) { return WA_BASE + (text ? '?text=' + encodeURIComponent(text) : ''); }
   var defaultMsg = 'Olá! Vim pelo site da DRC e gostaria de um orçamento de perfuração direcional (MND).';
-  ['waCard', 'midWa'].forEach(function (id) {
+  ['waCard', 'midWa', 'heroWa', 'floatWa'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) { el.href = waLink(defaultMsg); el.target = '_blank'; el.rel = 'noopener'; }
   });
@@ -242,14 +242,23 @@
       var em = document.getElementById('f_email');   // e-mail é opcional, mas se preenchido tem que ser válido
       if (em.value.trim() && !emailOk(em.value.trim())) { em.classList.add('bad'); bad = true; } else { em.classList.remove('bad'); }
       var cons = document.getElementById('f_consent');
+      var consLabel = cons.closest('.consent');
+      if (consLabel) consLabel.classList.toggle('bad', !cons.checked);
       if (!cons.checked) bad = true;
       return !bad;
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!check()) {
-        if (err) err.hidden = false;
-        var firstBad = form.querySelector('.bad') || (!document.getElementById('f_consent').checked ? document.getElementById('f_consent') : null);
+        if (err) {
+          var fieldsOk = req.every(function (id) { return document.getElementById(id).value.trim().length >= 2; });
+          var em2 = document.getElementById('f_email');
+          var emailBad = em2.value.trim() && !emailOk(em2.value.trim());
+          var onlyConsent = fieldsOk && !emailBad && !document.getElementById('f_consent').checked;
+          err.textContent = onlyConsent ? 'Confirme o consentimento (LGPD) para continuar.' : 'Preencha os campos obrigatórios (*) e o consentimento para continuar.';
+          err.hidden = false;
+        }
+        var firstBad = form.querySelector('.field input.bad, .field select.bad') || (!document.getElementById('f_consent').checked ? document.getElementById('f_consent') : null);
         if (firstBad) firstBad.focus();
         return;
       }
@@ -290,11 +299,12 @@
     var fc = document.getElementById('ctaFloat'); if (!fc) return;
     var hero = document.getElementById('topo'), contato = document.getElementById('contato');
     var pastHero = false, atForm = false;
+    var fcLinks = fc.querySelectorAll('a');
     function upd() {
       var on = pastHero && !atForm;
       fc.classList.toggle('show', on);
       fc.setAttribute('aria-hidden', on ? 'false' : 'true');
-      fc.tabIndex = on ? 0 : -1;
+      fcLinks.forEach(function (a) { a.tabIndex = on ? 0 : -1; });
     }
     if (hero) new IntersectionObserver(function (es) { pastHero = !es[0].isIntersecting; upd(); }, { threshold: 0 }).observe(hero);
     if (contato) new IntersectionObserver(function (es) { atForm = es[0].isIntersecting; upd(); }, { threshold: 0.05 }).observe(contato);
