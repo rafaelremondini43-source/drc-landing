@@ -95,7 +95,7 @@ html{scrollbar-width:thin; scrollbar-color:var(--sky) var(--bg-2)}
 .nav .row{display:flex; align-items:center; gap:24px}
 .nav .logo{height:46px; width:auto; transition:height .4s var(--ease)}
 .nav.small .logo{height:38px}
-.nav .links{margin-left:auto; display:flex; align-items:center; gap:32px}
+.nav .links{margin-left:auto; display:flex; align-items:center; gap:26px}
 .nav .links a.navlink{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.14em;
   text-transform:uppercase; color:rgba(255,255,255,.82); transition:color .25s; position:relative}
 .nav .links a.navlink::after{content:""; position:absolute; left:0; bottom:-6px; width:100%; height:1px; background:var(--sky-soft); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease)}
@@ -123,7 +123,7 @@ body.menu-open .drawer{opacity:1; pointer-events:auto; transform:none}
 body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu modal está aberto */
 .drawer a{font-family:var(--font-display); font-weight:600; font-size:clamp(1.8rem,7vw,2.6rem); color:var(--ink); padding:10px 0; border-bottom:1px solid var(--line-2)}
 .drawer a.navbtn{color:var(--sky); border-bottom:0; margin-top:14px}
-@media(max-width:860px){
+@media(max-width:1024px){
   .nav .links{display:none}
   .burger{display:grid}
 }
@@ -471,6 +471,21 @@ html.cursor-custom .qa summary{cursor:none}
 .signature .sig-seal{order:2; margin-top:0; margin-bottom:30px}
 .signature .sig-stage{order:3; align-self:stretch}
 .signature .sig-cta{order:4}
+
+/* ===== v5: conteúdo do PPT — clientes + ficha de caso ===== */
+.clients .h2{max-width:26ch}
+.client-grid{list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(185px,1fr)); gap:14px; margin-top:40px}
+.client-grid li{display:flex; align-items:center; justify-content:center; text-align:center; min-height:80px; padding:14px 16px;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--navy);
+  font-family:var(--font-display); font-weight:700; font-size:1.18rem; letter-spacing:.01em;
+  transition:border-color .3s,background .3s,color .3s}
+.client-grid li:hover{border-color:var(--sky); background:#fff; color:var(--sky)}
+@media(max-width:560px){.client-grid{grid-template-columns:1fr 1fr; gap:10px} .client-grid li{min-height:64px; font-size:1rem; padding:12px}}
+/* ficha de caso (Obra em destaque) sobre fundo escuro */
+.cine-spec{list-style:none; display:flex; flex-wrap:wrap; gap:16px 40px; margin-top:26px; max-width:none}
+.cine-spec li{display:flex; flex-direction:column; gap:2px}
+.cine-spec b{font-family:var(--font-display); font-weight:700; font-size:clamp(1.3rem,2.4vw,1.95rem); color:#fff; line-height:1}
+.cine-spec span{font-family:var(--font-body); font-size:.76rem; letter-spacing:.04em; color:rgba(255,255,255,.82)}
 
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce){
