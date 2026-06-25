@@ -4,9 +4,9 @@
 (function () {
   'use strict';
 
-  // ---- CONFIG: WhatsApp (país+DDD+número, só dígitos) ----
-  var WA_NUMERO = '551129051922';
-  var WA_BASE   = 'https://wa.me/' + WA_NUMERO;
+  // ---- CONFIG: e-mail de destino do formulário (sem backend ainda → mailto) ----
+  var EMAIL_TO = 'drc@drcnet.com.br';
+  function mailtoLink(subject, body) { return 'mailto:' + EMAIL_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); }
 
   var reduce   = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine     = matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -219,18 +219,11 @@
     mio.observe(mapFrame);
   }
 
-  // ---- WHATSAPP: links diretos + builder do formulário ----
-  function waLink(text) { return WA_BASE + (text ? '?text=' + encodeURIComponent(text) : ''); }
-  var defaultMsg = 'Olá! Vim pelo site da DRC e gostaria de um orçamento de perfuração direcional (MND).';
-  ['waCard', 'midWa', 'heroWa', 'floatWa'].forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) { el.href = waLink(defaultMsg); el.target = '_blank'; el.rel = 'noopener'; }
-  });
-
+  // ---- FORMULÁRIO → e-mail (mailto) ----
   var form = document.getElementById('orcForm');
   if (form) {
     var err = document.getElementById('formErr'), okBox = document.getElementById('formOk');
-    var req = ['f_nome', 'f_tel'];   // só nome + telefone obrigatórios (envio é por WhatsApp)
+    var req = ['f_nome', 'f_tel'];   // só nome + telefone obrigatórios (envio abre o e-mail)
     function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
     function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
     function check() {
@@ -272,8 +265,7 @@
       try { form.dispatchEvent(new CustomEvent('drc:lead', { bubbles: true, detail: { nome: val('f_nome'), empresa: val('f_empresa'), email: val('f_email'), telefone: val('f_tel'), segmento: val('f_seg'), cidade: val('f_cidade'), mensagem: val('f_msg') } })); } catch (e2) {}
       form.classList.add('sent');
       if (okBox) { try { okBox.focus(); } catch (e3) {} }
-      var w = window.open(waLink(t), '_blank', 'noopener');
-      if (!w) { location.href = waLink(t); }   // popup bloqueado → navega na própria aba
+      location.href = mailtoLink('Solicitação de orçamento — perfuração direcional (MND)', t);
     });
   }
 
