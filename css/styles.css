@@ -93,7 +93,8 @@ html{scrollbar-width:thin; scrollbar-color:var(--sky) var(--bg-2)}
   transition:padding .4s var(--ease),background .4s,box-shadow .4s}
 .nav.small{padding:11px 0; background:var(--navy); box-shadow:0 10px 30px -16px rgba(0,0,0,.7)}
 .nav .row{display:flex; align-items:center; gap:24px}
-.nav .logo{height:30px; width:auto}
+.nav .logo{height:46px; width:auto; transition:height .4s var(--ease)}
+.nav.small .logo{height:38px}
 .nav .links{margin-left:auto; display:flex; align-items:center; gap:32px}
 .nav .links a.navlink{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.14em;
   text-transform:uppercase; color:rgba(255,255,255,.82); transition:color .25s; position:relative}
@@ -379,7 +380,7 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .fc-specs span{font-family:var(--font-mono); font-size:.82rem; color:var(--faint)}
 .fc-specs b{color:var(--ink); font-weight:500}
 .ft-note{font-size:.8rem; color:var(--faint); margin-top:16px; max-width:84ch}
-.capgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:36px}
+.capgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px}
 .cap{border-left:2px solid var(--sky); padding:4px 0 4px 18px}
 .cap-v{font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,2.6vw,2rem); line-height:1.05}
 .cap-l{font-size:.84rem; color:var(--muted); margin-top:8px; max-width:26ch; line-height:1.4}
