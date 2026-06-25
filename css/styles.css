@@ -217,14 +217,17 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 @media(max-width:680px){.step{grid-template-columns:64px 1fr; gap:16px} .step .ico{display:none} .step .n{font-size:1.9rem}}
 
 /* NÚMEROS / PROVA */
-.stats-band{background:var(--bg-2); overflow:hidden}
-.stats-band::before{content:""; position:absolute; inset:0; background:url("../assets/img/rig-urbana.jpg") center/cover; opacity:.05; z-index:0}
+/* Números: âncora NAVY (mesmo azul royal + brilho sky da .midcta) — quebra a sequência clara */
+.stats-band{background:radial-gradient(120% 140% at 80% 0%,rgba(89,165,216,.22),transparent 60%),var(--navy); overflow:hidden}
+.stats-band::before{content:""; position:absolute; inset:0; background:url("../assets/img/rig-urbana.jpg") center/cover; opacity:.1; z-index:0}
 .stats-band .wrap{position:relative; z-index:1}
+.stats-band .kicker{color:var(--sky-soft)}
+.stats-band .kicker::before{background:var(--sky-soft)}
 .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:28px; text-align:left}
-.stat .num{font-family:var(--font-display); font-weight:700; font-size:clamp(2.8rem,6vw,4.6rem); color:var(--ink); line-height:1; font-variant-numeric:tabular-nums}
-.stat .num .u{color:var(--sky)}
-.stat .lb{color:var(--muted); font-size:.9rem; margin-top:10px; max-width:24ch; line-height:1.45}
-.stat{padding-left:22px; border-left:1px solid var(--line)}
+.stat .num{font-family:var(--font-display); font-weight:700; font-size:clamp(2.8rem,6vw,4.6rem); color:#fff; line-height:1; font-variant-numeric:tabular-nums}
+.stat .num .u{color:var(--sky-soft)}
+.stat .lb{color:rgba(255,255,255,.82); font-size:.9rem; margin-top:10px; max-width:24ch; line-height:1.45}
+.stat{padding-left:22px; border-left:1px solid rgba(255,255,255,.2)}
 @media(max-width:760px){.stats{grid-template-columns:1fr 1fr; gap:30px 18px}}
 @media(max-width:420px){.stats{grid-template-columns:1fr}}
 
@@ -365,7 +368,7 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .hero-media,.cine .media{will-change:transform}   /* padrão Krono: camada promovida p/ parallax fluido */
 
 /* ===== v2: specs de frota, capacidades, comparação, FAQ ===== */
-.stat .num .u{color:var(--sky); font-size:.66em}
+.stat .num .u{color:var(--sky-soft); font-size:.66em}
 .fleet-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:14px; margin-top:40px}
 .fcard{border:1px solid var(--line); background:var(--surface-2); padding:20px 22px; transition:border-color .3s,background .3s}
 .fcard:hover{border-color:var(--sky); background:rgba(89,165,216,.05)}
@@ -415,10 +418,9 @@ html.cursor-custom .qa summary{cursor:none}
 .hero-textlink:hover{color:var(--navy); border-bottom-color:var(--navy)} .hero-textlink:hover .ar{transform:translateY(3px)}
 /* CTA na seção drill-path (zona quente sem conversão) */
 .sig-cta{margin-top:32px}
-/* prova social (selos) junto ao botão de envio do form */
-.form-trust{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:6px 0 2px}
-.form-trust .seal-tile{width:46px; height:46px; padding:5px}
-.form-trust .ft-txt{font-size:.82rem; color:var(--muted); flex:1; min-width:200px; line-height:1.4}
+/* prova social no form — linha de texto enxuta (selos completos ficam em Empresa + rodapé) */
+.form-trust{display:flex; align-items:center; gap:9px; padding:6px 0 2px; font-size:.82rem; color:var(--muted); line-height:1.45}
+.form-trust svg{width:15px; height:15px; color:var(--sky); flex:0 0 auto}
 /* CTA flutuante também no desktop, após o hero */
 @media(min-width:861px){.cta-float{display:flex; left:auto; right:24px; bottom:24px; width:auto}
   .cta-float a{flex:0 0 auto; padding:13px 22px}}
@@ -449,11 +451,13 @@ html.cursor-custom .qa summary{cursor:none}
 .consent.bad input{outline:2px solid var(--red); outline-offset:2px}
 /* AI4 — expectativa antes do submit (abre o WhatsApp) */
 .send-hint{font-size:.84rem; color:var(--muted); line-height:1.5; margin-top:2px}
-/* AI2 — ficha técnica da obra em destaque (números reais, sobre fundo escuro) */
-.cine-spec{list-style:none; display:flex; flex-wrap:wrap; gap:16px 40px; margin-top:26px; max-width:none}
-.cine-spec li{display:flex; flex-direction:column; gap:2px}
-.cine-spec b{font-family:var(--font-display); font-weight:700; font-size:clamp(1.3rem,2.4vw,1.95rem); color:#fff; line-height:1}
-.cine-spec span{font-family:var(--font-body); font-size:.76rem; letter-spacing:.04em; color:rgba(255,255,255,.82)}
+/* ===== v4: ritmo de contraste (resolver "muito branco") ===== */
+/* tints deliberados — evita dois fundos brancos chapados colados */
+#comparacao,#empresa{background:var(--bg-2)}
+/* definição dos cards nas seções claras (borda + sombra sutil; cantos retos mantidos) */
+.fcard,.cert,.ci-card{box-shadow:0 1px 0 rgba(10,28,64,.04),0 18px 38px -30px rgba(10,28,64,.5)}
+.fcard{border-color:rgba(10,28,64,.16)}
+.compare .col.good{box-shadow:0 18px 40px -30px rgba(30,115,190,.5)}
 /* AI3 — diferencial: chips de benefício logo abaixo do título, antes do esquema; CTA destacado */
 .signature .wrap{display:flex; flex-direction:column; align-items:flex-start}
 .signature .sig-head{order:1; margin-bottom:22px}
