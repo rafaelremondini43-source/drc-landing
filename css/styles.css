@@ -85,26 +85,28 @@ html:not(.cursor-custom) .burger,html:not(.cursor-custom) .field input,html:not(
 .lines.in .ln:nth-child(4) > span{transition-delay:.24s}
 
 /* NAV */
-.nav{position:fixed; inset:0 0 auto 0; z-index:100; padding:18px 0; background:rgba(255,255,255,.9);
-  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-bottom:1px solid var(--line-2);
+/* HEADER em azul DRC (azulzão = identidade): barra navy sólida; o logo (fundo #012A82) funde na barra */
+.nav{position:fixed; inset:0 0 auto 0; z-index:100; padding:18px 0; background:var(--navy);
+  border-bottom:1px solid rgba(255,255,255,.1);
   transition:padding .4s var(--ease),background .4s,box-shadow .4s}
-.nav.small{padding:11px 0; background:rgba(255,255,255,.97); box-shadow:0 8px 26px -18px rgba(10,28,64,.55)}
+.nav.small{padding:11px 0; background:var(--navy); box-shadow:0 10px 30px -16px rgba(0,0,0,.7)}
 .nav .row{display:flex; align-items:center; gap:24px}
 .nav .logo{height:30px; width:auto}
 .nav .links{margin-left:auto; display:flex; align-items:center; gap:32px}
 .nav .links a.navlink{font-family:var(--font-mono); font-size:.74rem; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--muted); transition:color .25s; position:relative}
-.nav .links a.navlink::after{content:""; position:absolute; left:0; bottom:-6px; width:100%; height:1px; background:var(--sky); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease)}
-.nav .links a.navlink:hover{color:var(--ink)}
+  text-transform:uppercase; color:rgba(255,255,255,.82); transition:color .25s; position:relative}
+.nav .links a.navlink::after{content:""; position:absolute; left:0; bottom:-6px; width:100%; height:1px; background:var(--sky-soft); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease)}
+.nav .links a.navlink:hover{color:#fff}
 .nav .links a.navlink:hover::after{transform:scaleX(1)}
-.nav .links a.navlink[aria-current="true"]{color:var(--ink)}
+.nav .links a.navlink[aria-current="true"]{color:#fff}
 .nav .links a.navlink[aria-current="true"]::after{transform:scaleX(1)}
-.nav .links a.navbtn{font-family:var(--font-body)}
+.nav .links a.navbtn{font-family:var(--font-body); background:#fff; border-color:#fff; color:var(--navy)}
+.nav .links a.navbtn:hover{background:var(--bg-2); border-color:var(--bg-2)}
 
 /* hamburger */
-.burger{display:none; margin-left:auto; width:42px; height:42px; border:1px solid var(--line); background:transparent; place-items:center; cursor:none}
-.burger span{display:block; width:18px; height:2px; background:var(--ink); position:relative; transition:.3s var(--ease)}
-.burger span::before,.burger span::after{content:""; position:absolute; left:0; width:18px; height:2px; background:var(--ink); transition:.3s var(--ease)}
+.burger{display:none; margin-left:auto; width:42px; height:42px; border:1px solid rgba(255,255,255,.3); background:transparent; place-items:center; cursor:none}
+.burger span{display:block; width:18px; height:2px; background:#fff; position:relative; transition:.3s var(--ease)}
+.burger span::before,.burger span::after{content:""; position:absolute; left:0; width:18px; height:2px; background:#fff; transition:.3s var(--ease)}
 .burger span::before{top:-6px}.burger span::after{top:6px}
 body.menu-open .burger span{background:transparent}
 body.menu-open .burger span::before{top:0; transform:rotate(45deg)}
