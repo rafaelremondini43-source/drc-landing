@@ -126,11 +126,11 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 /* BOTÕES */
 .btn{display:inline-flex; align-items:center; gap:11px; font-family:var(--font-body);
   font-weight:600; font-size:1rem; letter-spacing:.005em; padding:15px 26px;
-  border:1px solid var(--red); background:var(--red); color:#fff; border-radius:var(--radius);
+  border:1px solid var(--navy); background:var(--navy); color:#fff; border-radius:var(--radius);
   position:relative; transition:transform .3s var(--ease),background .3s,border-color .3s}
 .btn svg{width:18px; height:18px}
 .btn .ar{transition:transform .3s var(--ease)}
-.btn:hover{background:var(--red-bright); border-color:var(--red-bright)} .btn:hover .ar{transform:translateX(4px)}
+.btn:hover{background:var(--sky); border-color:var(--sky)} .btn:hover .ar{transform:translateX(4px)}
 .btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
 .btn.ghost:hover{background:rgba(255,255,255,.06); border-color:var(--ink)}
 .btn.sky{background:transparent; color:var(--sky); border-color:rgba(89,165,216,.5)}
@@ -353,7 +353,7 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .cta-float a{flex:1; display:inline-flex; align-items:center; justify-content:center; gap:9px;
   font-family:var(--font-body); font-weight:600; font-size:.98rem; padding:15px 16px; color:#fff;
   box-shadow:0 12px 30px -14px rgba(10,28,64,.6)}
-.cta-float .cf-orc{background:var(--red)}
+.cta-float .cf-orc{background:var(--navy)}
 .cta-float .cf-wa{background:var(--green)}
 .cta-float .cf-wa svg{width:18px; height:18px; fill:currentColor}
 .cta-float.show{opacity:1; transform:none; pointer-events:auto}
@@ -451,6 +451,12 @@ html.cursor-custom .qa summary{cursor:none}
 .consent.bad input{outline:2px solid var(--red); outline-offset:2px}
 /* AI4 — expectativa antes do submit (abre o WhatsApp) */
 .send-hint{font-size:.84rem; color:var(--muted); line-height:1.5; margin-top:2px}
+/* CTA em azul DRC (royal) — nas seções ESCURAS (Obra/faixa navy) o botão vira branco p/ não sumir no fundo azul */
+.cine .btn:not(.wa),.midcta .btn:not(.wa){background:#fff; border-color:#fff; color:var(--navy)}
+.cine .btn:not(.wa):hover,.midcta .btn:not(.wa):hover{background:var(--bg-2); border-color:var(--bg-2)}
+/* CTA flutuante passa por fundos claros e escuros: borda sutil garante a leitura em qualquer um */
+.cta-float a{border:1px solid rgba(255,255,255,.5)}
+
 /* ===== v4: ritmo de contraste (resolver "muito branco") ===== */
 /* tints deliberados — evita dois fundos brancos chapados colados */
 #comparacao,#empresa{background:var(--bg-2)}
