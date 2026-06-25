@@ -7,7 +7,7 @@
 :root{
   /* tema CLARO */
   --navy:#012B81; --navy-deep:#011d5e; --navy-title:#012B81; --sky:#1E73BE; --sky-soft:#59A5D8;
-  --cine:#0a1430; --red:#E5342B; --red-bright:#ff4a40; --green:#159a52;
+  --cine:#0a1430; --red:#E5342B; --green:#159a52;
   --bg:#ffffff; --bg-2:#eef3fa; --surface:#ffffff; --surface-2:#f4f8fd;
   --ink:#0c1a36; --muted:#54627a; --faint:#5f6e87;
   --line:rgba(10,28,64,.14); --line-2:rgba(10,28,64,.07);
@@ -32,7 +32,6 @@ html.cursor-custom body{cursor:none}   /* só esconde o cursor nativo quando o c
 a{color:inherit; text-decoration:none}
 img,svg,video,canvas{display:block; max-width:100%}
 button{font:inherit; color:inherit}
-.mono{font-family:var(--font-mono); font-variant-numeric:tabular-nums}
 ::selection{background:var(--sky); color:var(--cine)}
 
 /* DISPLAY — Roboto Condensed, caixa normal */
@@ -136,12 +135,6 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .btn svg{width:18px; height:18px}
 .btn .ar{transition:transform .3s var(--ease)}
 .btn:hover{background:var(--sky); border-color:var(--sky)} .btn:hover .ar{transform:translateX(4px)}
-.btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
-.btn.ghost:hover{background:rgba(255,255,255,.06); border-color:var(--ink)}
-.btn.sky{background:transparent; color:var(--sky); border-color:rgba(89,165,216,.5)}
-.btn.sky:hover{background:rgba(89,165,216,.1); border-color:var(--sky)}
-.btn.wa{background:var(--green); border-color:var(--green); color:#fff}
-.btn.wa:hover{filter:brightness(1.08)}
 .btn.big{padding:18px 32px; font-size:1.06rem}
 .btn-row{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
 .btn:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--sky); outline-offset:3px}
@@ -355,8 +348,6 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
   font-family:var(--font-body); font-weight:600; font-size:.98rem; padding:15px 16px; color:#fff;
   box-shadow:0 12px 30px -14px rgba(10,28,64,.6)}
 .cta-float .cf-orc{background:var(--navy)}
-.cta-float .cf-wa{background:var(--green)}
-.cta-float .cf-wa svg{width:18px; height:18px; fill:currentColor}
 .cta-float.show{opacity:1; transform:none; pointer-events:auto}
 @media(max-width:860px){.cta-float{display:flex}}
 
@@ -365,8 +356,7 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 .skip:focus{left:0}
 
 /* helpers */
-.tokens{overflow-wrap:break-word}
-.hero-media,.cine .media{will-change:transform}   /* padrão Krono: camada promovida p/ parallax fluido */
+.cine .media{will-change:transform}   /* parallax fluido (padrão Krono) */
 
 /* ===== v2: specs de frota, capacidades, comparação, FAQ ===== */
 .stat .num .u{color:var(--sky-soft); font-size:.66em}
@@ -497,5 +487,5 @@ html.cursor-custom .qa summary{cursor:none}
   .seg .bg img{transform:none !important}
 }
 @media(hover:none){
-  .qa summary,.opt,.btn,.field input,.field select,.field textarea,.consent input{cursor:auto}
+  .qa summary,.btn,.field input,.field select,.field textarea,.consent input{cursor:auto}
 }
