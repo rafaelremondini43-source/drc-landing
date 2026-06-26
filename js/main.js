@@ -151,21 +151,6 @@
     updateParallax();
   }
 
-  // ---- HERO vídeo (no mobile/conexão lenta usa só o poster — leve e sem jank) ----
-  var conn = navigator.connection || {};
-  var slowNet = /(^|-)2g/.test(conn.effectiveType || '');
-  var lightHero = reduce || saveData || slowNet || innerWidth <= 768;
-  var hv = document.getElementById('heroVideo');
-  if (hv) {
-    if (lightHero) { var s = hv.querySelector('source'); if (s) s.remove(); }
-    else {
-      // adia o carregamento do vídeo p/ DEPOIS do load — não compete com o LCP/primeiro paint
-      var startVid = function () { try { hv.load(); var p = hv.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {} };
-      if (document.readyState === 'complete') setTimeout(startVid, 250);
-      else addEventListener('load', function () { setTimeout(startVid, 250); });
-    }
-  }
-
   // ---- DRILL-PATH (assinatura): scrub por scroll ----
   (function drill() {
     var svg = document.getElementById('sigSvg'); if (!svg) return;
