@@ -359,22 +359,41 @@ a.ci-card:hover{border-color:var(--sky); background:rgba(89,165,216,.06)}
 
 /* ===== v2: specs de frota, capacidades, comparação, FAQ ===== */
 .stat .num .u{color:var(--sky-soft); font-size:.66em}
-.fleet-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:14px; margin-top:40px}
-.fcard{border:1px solid var(--line); background:var(--surface-2); padding:20px 22px; transition:border-color .3s,background .3s}
-.fcard:hover{border-color:var(--sky); background:rgba(89,165,216,.05)}
-.fc-code{font-family:var(--font-display); font-weight:700; font-size:1.5rem; letter-spacing:-.01em}
-.fc-code em{font-style:normal; font-family:var(--font-mono); font-size:.78rem; color:var(--sky); margin-left:6px}
-.fc-model{font-size:.84rem; color:var(--muted); margin:4px 0 14px}
-.fc-specs{display:flex; flex-direction:column; gap:7px; border-top:1px solid var(--line-2); padding-top:12px}
-.fc-specs span{font-family:var(--font-mono); font-size:.82rem; color:var(--faint)}
-.fc-specs b{color:var(--ink); font-weight:500}
+/* ===== FROTA — datasheet com régua de pullback (tração proporcional a 36 tf) ===== */
+.fleet-ds{margin-top:40px;border:1px solid var(--line);background:var(--surface-2)}
+.fleet-ds table{width:100%;border-collapse:collapse;font-size:.92rem}
+.fleet-ds caption{caption-side:top;text-align:left;font-family:var(--font-body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:600;padding:16px 20px;border-bottom:1px solid var(--line);background:#fff}
+.fleet-ds thead th{font-family:var(--font-body);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);font-weight:600;text-align:left;padding:14px 20px;border-bottom:1px solid var(--line);background:#fff;white-space:nowrap}
+.fleet-ds th.num,.fleet-ds td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.fleet-ds tbody td{padding:15px 20px;border-bottom:1px solid var(--line-2);vertical-align:baseline}
+.fleet-ds tbody tr:last-child td{border-bottom:0}
+.fleet-ds tbody tr{transition:background .25s}
+.fleet-ds tbody tr:hover{background:rgba(30,115,190,.045)}
+.ds-eq{font-family:var(--font-display);font-weight:700;font-size:1.18rem;letter-spacing:-.01em;color:var(--ink);line-height:1.1}
+.ds-eq small{display:block;font-family:var(--font-body);font-weight:400;font-size:.78rem;letter-spacing:0;text-transform:none;color:var(--muted);margin-top:3px}
+.ds-tf{font-family:var(--font-display);font-weight:700;font-size:1.5rem;line-height:1;color:var(--navy)}
+.ds-tf span{font-family:var(--font-body);font-weight:500;font-size:.72rem;color:var(--faint);margin-left:3px}
+.ds-app{color:var(--muted);max-width:38ch}
+.ds-app b{color:var(--ink);font-weight:600}
+.ds-bar{position:relative;display:block;height:4px;background:var(--line-2);margin-top:9px;width:100%;max-width:180px;margin-left:auto}
+.ds-bar i{position:absolute;inset:0 auto 0 0;background:var(--sky)}
+.fleet-ds tfoot td{padding:16px 20px;border-top:2px solid var(--line);background:#fff;font-size:.82rem;color:var(--faint)}
+.fleet-ds tfoot b{color:var(--ink);font-weight:600}
+.fleet-ds tfoot .ds-env{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline}
+.fleet-ds tfoot .ds-env .k{color:var(--sky);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+@media(max-width:720px){
+  .fleet-ds thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%)}
+  .fleet-ds table,.fleet-ds tbody,.fleet-ds tfoot,.fleet-ds tr,.fleet-ds td{display:block;width:100%}
+  .fleet-ds tbody tr{padding:16px 20px;border-bottom:1px solid var(--line)}
+  .fleet-ds tbody td{padding:0;border:0}
+  .fleet-ds td.num{text-align:left}
+  .fleet-ds .ds-tf{font-size:1.7rem;margin:10px 0 2px}
+  .fleet-ds .ds-bar{max-width:100%;margin-left:0}
+  .fleet-ds .ds-app{margin-top:12px;max-width:none}
+  .fleet-ds tfoot td{padding:18px 20px}
+}
 .ft-note{font-size:.8rem; color:var(--faint); margin-top:16px; max-width:84ch}
-.capgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px}
 .cap{border-left:2px solid var(--sky); padding:4px 0 4px 18px}
-.cap-v{font-family:var(--font-display); font-weight:700; font-size:clamp(1.4rem,2.6vw,2rem); line-height:1.05}
-.cap-l{font-size:.84rem; color:var(--muted); margin-top:8px; max-width:26ch; line-height:1.4}
-@media(max-width:760px){.capgrid{grid-template-columns:1fr 1fr}}
-@media(max-width:440px){.capgrid{grid-template-columns:1fr}}
 /* comparação vala × MND */
 .compare{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:50px}
 .compare .col{border:1px solid var(--line); padding:clamp(24px,3vw,34px); background:var(--surface-2)}
@@ -448,8 +467,7 @@ html.cursor-custom .qa summary{cursor:none}
 /* tints deliberados — evita dois fundos brancos chapados colados */
 #comparacao,#empresa{background:var(--bg-2)}
 /* definição dos cards nas seções claras (borda + sombra sutil; cantos retos mantidos) */
-.fcard,.cert,.ci-card{box-shadow:0 1px 0 rgba(10,28,64,.04),0 18px 38px -30px rgba(10,28,64,.5)}
-.fcard{border-color:rgba(10,28,64,.16)}
+.cert,.ci-card{box-shadow:0 1px 0 rgba(10,28,64,.04),0 18px 38px -30px rgba(10,28,64,.5)}
 .compare .col.good{box-shadow:0 18px 40px -30px rgba(30,115,190,.5)}
 /* AI3 — diferencial: chips de benefício logo abaixo do título, antes do esquema; CTA destacado */
 .signature .wrap{display:flex; flex-direction:column; align-items:flex-start}
