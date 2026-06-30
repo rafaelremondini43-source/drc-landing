@@ -472,6 +472,13 @@ html.cursor-custom .qa summary{cursor:none}
   font-family:var(--font-display); font-weight:700; font-size:1.18rem; letter-spacing:.01em;
   transition:border-color .3s,background .3s,color .3s}
 .client-grid li:hover{border-color:var(--sky); background:#fff; color:var(--sky)}
+/* mural de LOGOS: tile branco, altura uniforme, cinza->cor no hover */
+.client-grid.logos{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.client-grid.logos li{min-height:104px; background:#fff; padding:20px 24px}
+.client-grid.logos li img{max-width:100%; max-height:54px; width:auto; object-fit:contain; filter:grayscale(1) opacity(.62); transition:filter .35s}
+.client-grid.logos li:hover{border-color:var(--line); background:#fff}
+.client-grid.logos li:hover img{filter:none}
+@media(max-width:560px){.client-grid.logos li{min-height:84px; padding:14px} .client-grid.logos li img{max-height:42px}}
 @media(max-width:560px){.client-grid{grid-template-columns:1fr 1fr; gap:10px} .client-grid li{min-height:64px; font-size:1rem; padding:12px}}
 /* ficha de caso (Obra em destaque) sobre fundo escuro */
 .cine-spec{list-style:none; display:flex; flex-wrap:wrap; gap:16px 40px; margin-top:26px; max-width:none}
