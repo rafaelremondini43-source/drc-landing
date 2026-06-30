@@ -219,24 +219,16 @@
       });
       var em = document.getElementById('f_email');   // e-mail é opcional, mas se preenchido tem que ser válido
       if (em.value.trim() && !emailOk(em.value.trim())) { em.classList.add('bad'); bad = true; } else { em.classList.remove('bad'); }
-      var cons = document.getElementById('f_consent');
-      var consLabel = cons.closest('.consent');
-      if (consLabel) consLabel.classList.toggle('bad', !cons.checked);
-      if (!cons.checked) bad = true;
       return !bad;
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!check()) {
         if (err) {
-          var fieldsOk = req.every(function (id) { return document.getElementById(id).value.trim().length >= 2; });
-          var em2 = document.getElementById('f_email');
-          var emailBad = em2.value.trim() && !emailOk(em2.value.trim());
-          var onlyConsent = fieldsOk && !emailBad && !document.getElementById('f_consent').checked;
-          err.textContent = onlyConsent ? 'Confirme o consentimento (LGPD) para continuar.' : 'Preencha os campos obrigatórios (*) e o consentimento para continuar.';
+          err.textContent = 'Preencha os campos obrigatórios (*) para continuar.';
           err.hidden = false;
         }
-        var firstBad = form.querySelector('.field input.bad, .field select.bad') || (!document.getElementById('f_consent').checked ? document.getElementById('f_consent') : null);
+        var firstBad = form.querySelector('.field input.bad, .field select.bad');
         if (firstBad) firstBad.focus();
         return;
       }
