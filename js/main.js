@@ -246,6 +246,19 @@
     });
   }
 
+  // ---- HERO: vídeo de fundo (autoplay no desktop; mobile/saveData/reduce = só o poster, sem baixar o mp4) ----
+  (function heroVideo() {
+    var v = document.querySelector('.hero-vid'); if (!v) return;
+    var light = saveData || (window.matchMedia && (matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width:768px)').matches));
+    if (light) {
+      v.removeAttribute('autoplay'); v.preload = 'none';
+      var s = v.querySelector('source'); if (s) { s.removeAttribute('src'); v.removeChild(s); }
+      try { v.load(); } catch (e) {}
+    } else {
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+  })();
+
   // ---- SCROLL-SPY (aria-current na seção ativa) ----
   (function spy() {
     var links = [].slice.call(document.querySelectorAll('.nav .links a.navlink'));
