@@ -452,11 +452,10 @@ html.cursor-custom .qa summary{cursor:none}
 }
 /* QW5 — após o envio, some o formulário e fica só a confirmação (evita reenvio/2 conversas) */
 .form.sent .field,.form.sent .row2,.form.sent .consent,.form.sent .form-trust,
-.form.sent .send-hint,.form.sent #formSend,.form.sent .form-note,.form.sent .form-err{display:none}
+.form.sent #formSend,.form.sent .form-note,.form.sent .form-err{display:none}
 .form.sent{gap:0}
 /* QW5 — feedback claro do consentimento LGPD */
 /* AI4 — expectativa antes do submit (abre o WhatsApp) */
-.send-hint{font-size:.84rem; color:var(--muted); line-height:1.5; margin-top:2px}
 /* CTA em azul DRC (royal) — nas seções ESCURAS (Obra/faixa navy) o botão vira branco p/ não sumir no fundo azul */
 .cine .btn:not(.wa),.midcta .btn:not(.wa){background:#fff; border-color:#fff; color:var(--navy)}
 .cine .btn:not(.wa):hover,.midcta .btn:not(.wa):hover{background:var(--bg-2); border-color:var(--bg-2)}
