@@ -5,7 +5,7 @@ Estática, single-page, sem framework. Mobile-first, acessível, motion contido.
 
 ## Stack
 - `index.html` — página única (semântica + JSON-LD Organization/LocalBusiness).
-- `css/styles.css` — design system navy (Roboto Condensed + Inter + Roboto Mono), cantos retos.
+- `css/styles.css` — design system navy v6 (Roboto Condensed display + Inter corpo + IBM Plex Mono técnica), cantos retos; TEMA CLARO com âncoras navy (stats-band, Obra, midcta, footer navy); CTAs em royal `#012B81` (vermelho `#E5342B` é SÓ semântico: erros, "✕ vala aberta").
 - `js/main.js` — Lenis (smooth scroll), reveals/contadores, nav, parallax, **drill-path** animado por scroll, menu mobile, envio do formulário por e-mail (mailto), mapa lazy.
 - `js/lenis.min.js` — smooth scroll.
 - `assets/img/` — fotos reais da DRC (otimizadas) + imagens geradas (Nano Banana Pro) + logo oficial.
