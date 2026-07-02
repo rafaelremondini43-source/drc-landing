@@ -83,8 +83,10 @@
       if (!craf) craf = requestAnimationFrame(cloop);
     }, { passive: true });
     document.querySelectorAll('a,button,summary,.btn,input,select,textarea,.seg').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { document.body.classList.add('hovering'); });
-      el.addEventListener('mouseleave', function () { document.body.classList.remove('hovering'); });
+      // cursor contextual: CTAs de conversão pintam o anel de vermelho; o resto usa o anel navy
+      var isCta = el.classList.contains('btn') || el.classList.contains('navbtn') || !!el.closest('.cta-float');
+      el.addEventListener('mouseenter', function () { document.body.classList.add(isCta ? 'hovering-cta' : 'hovering'); });
+      el.addEventListener('mouseleave', function () { document.body.classList.remove('hovering'); document.body.classList.remove('hovering-cta'); });
     });
   } else if (cur) { cur.style.display = 'none'; if (dot) dot.style.display = 'none'; }
 
