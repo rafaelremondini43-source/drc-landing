@@ -15,7 +15,7 @@ Estática, single-page, sem framework. Mobile-first, acessível, motion contido.
 ## Regras do projeto
 - **Logo:** somente o logo oficial da DRC (`assets/img/logo-drc.png`). Nunca substituir por outra marca.
 - **Conteúdo:** a DRC **não** faz remediação de solo — o termo não deve aparecer.
-- **Segmentos:** Energia, Gás/Óleo, Saneamento, Telecom, Infraestrutura Urbana (exatamente 5).
+- **Segmentos:** Energia, Gás/Óleo, Saneamento, Telecom, Infraestrutura Urbana, Data Centers (exatamente 6).
 
 ## Rodar localmente
 Servir a pasta como estático, por exemplo:
