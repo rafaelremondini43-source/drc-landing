@@ -67,12 +67,13 @@ section{position:relative}
 .sec.tight{padding:var(--sec-tight) 0}
 .eyebrow-row{margin-bottom:28px}
 
-/* MARGINALIA — régua técnica vertical que preenche a coluna direita vazia (desktop) */
-.marginalia{position:absolute; top:var(--sec); right:calc(var(--pad)/2); z-index:1;
+/* MARGINALIA — régua técnica vertical na CALHA externa ao wrap (só telas largas,
+   onde existe gutter real fora do container de 1320px — senão colide com o conteúdo) */
+.marginalia{position:absolute; top:var(--sec); right:calc((100% - var(--maxw)) / 2 - 6px); z-index:1;
   writing-mode:vertical-rl; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.3em;
-  text-transform:uppercase; color:var(--faint); opacity:.55; display:flex; align-items:center; gap:14px}
+  text-transform:uppercase; color:var(--faint); opacity:.5; display:flex; align-items:center; gap:14px}
 .marginalia::after{content:""; width:1px; height:72px; background:var(--line)}
-@media(max-width:1100px){.marginalia{display:none}}
+@media(max-width:1400px){.marginalia{display:none}}
 
 /* TICKS "+" de canto (estética prancha técnica) */
 .ticks{position:relative}
