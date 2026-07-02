@@ -388,7 +388,15 @@ a.ci-card:hover{border-color:var(--navy); background:#fff}
 .foot .fcerts{display:flex; gap:10px; margin-top:20px; align-items:center; flex-wrap:wrap}
 .foot .fcerts .seal-tile{width:58px; height:58px; padding:6px; border:0}
 .foot .fcerts .abratt-tile{font-size:.84rem}
-.foot .cr{margin-top:48px; padding-top:24px; border-top:1px solid var(--d-line-2); font-family:var(--font-mono); font-size:.68rem; letter-spacing:.04em; color:var(--d-faint); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+/* bloco legal — dados oficiais do CNPJ (razão social, CNPJ, IE, capital) */
+.foot-legal{margin-top:48px; padding-top:24px; border-top:1px solid var(--d-line-2);
+  font-family:var(--font-mono); font-size:.66rem; letter-spacing:.04em; color:var(--d-faint);
+  display:flex; flex-wrap:wrap; gap:6px 0; line-height:1.5}
+.foot-legal span{padding:0 16px; border-left:1px solid var(--d-line-2)}
+.foot-legal span:first-child{padding-left:0; border-left:0}
+.foot-legal b{color:var(--d-muted); font-weight:600}
+.foot .cr{margin-top:20px; font-family:var(--font-mono); font-size:.68rem; letter-spacing:.04em; color:var(--d-faint); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+@media(max-width:640px){.foot-legal span{padding-left:0; border-left:0}}
 @media(max-width:760px){.foot .top{grid-template-columns:1fr 1fr} .foot .fcol.brand{grid-column:1 / -1}}
 @media(max-width:460px){.foot .top{grid-template-columns:1fr}}
 
