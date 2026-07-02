@@ -23,7 +23,12 @@
   }
   function go(el) {
     if (!el) return;
-    if (lenis) lenis.scrollTo(el, { offset: -20 });
+    // compensa a altura REAL da nav fixa no momento do clique (varia 61-83px conforme .nav.small) —
+    // offset fixo de -20 deixava o título das seções (ex.: Obra em destaque) atrás da barra
+    var navEl = document.getElementById('nav');
+    var navH = navEl ? navEl.getBoundingClientRect().height : 82;
+    var off = -(navH + 16);
+    if (lenis) lenis.scrollTo(el, { offset: off });
     else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   }
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {

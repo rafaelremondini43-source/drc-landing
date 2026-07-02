@@ -63,6 +63,9 @@ h1,h2,h3{font-family:var(--font-display); font-weight:700; line-height:1.02; let
 .lead{font-size:clamp(1.05rem,1.4vw,1.28rem); color:var(--muted); max-width:56ch; line-height:1.62}
 .lead b,.lead strong{color:var(--ink); font-weight:600}
 section{position:relative}
+/* rede de segurança p/ saltos de âncora nativos (Tab, link direto #hash, sem JS) —
+   o JS (go() em main.js) já compensa a nav dinamicamente; isto cobre o fallback */
+section[id],footer[id]{scroll-margin-top:104px}
 .sec{padding:var(--sec) 0}
 .sec.tight{padding:var(--sec-tight) 0}
 .eyebrow-row{margin-bottom:28px}
