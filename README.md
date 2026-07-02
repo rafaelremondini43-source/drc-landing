@@ -5,7 +5,7 @@ Estática, single-page, sem framework. Mobile-first, acessível, motion contido.
 
 ## Stack
 - `index.html` — página única (semântica + JSON-LD Organization/LocalBusiness).
-- `css/styles.css` — design system navy v6 (Roboto Condensed display + Inter corpo + IBM Plex Mono técnica), cantos retos; TEMA CLARO com âncoras navy (stats-band, Obra, midcta, footer navy); CTAs em royal `#012B81` (vermelho `#E5342B` é SÓ semântico: erros, "✕ vala aberta").
+- `css/styles.css` — design system navy (Roboto Condensed + Inter + Roboto Mono), cantos retos.
 - `js/main.js` — Lenis (smooth scroll), reveals/contadores, nav, parallax, **drill-path** animado por scroll, menu mobile, envio do formulário por e-mail (mailto), mapa lazy.
 - `js/lenis.min.js` — smooth scroll.
 - `assets/img/` — fotos reais da DRC (otimizadas) + imagens geradas (Nano Banana Pro) + logo oficial.
@@ -15,7 +15,7 @@ Estática, single-page, sem framework. Mobile-first, acessível, motion contido.
 ## Regras do projeto
 - **Logo:** somente o logo oficial da DRC (`assets/img/logo-drc.png`). Nunca substituir por outra marca.
 - **Conteúdo:** a DRC **não** faz remediação de solo — o termo não deve aparecer.
-- **Segmentos:** Energia, Gás/Óleo, Saneamento, Telecom, Infraestrutura Urbana, Data Centers (exatamente 6).
+- **Segmentos:** Energia, Gás/Óleo, Saneamento, Telecom, Infraestrutura Urbana (exatamente 5).
 
 ## Rodar localmente
 Servir a pasta como estático, por exemplo:
