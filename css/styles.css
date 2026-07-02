@@ -9,10 +9,10 @@
 
 :root{
   /* marca */
-  --navy:#012B81; --navy-deep:#011d5e; --navy-logo:#012A82; --navy-title:#012B81;
+  --navy:#012B81; --navy-logo:#012A82;
   --navy-ink:#010D26;                    /* fundo escuro além da marca (abertura/fechamento) */
   --sky:#1E73BE; --sky-soft:#59A5D8;
-  --cine:#0a1430; --red:#E5342B; --red-deep:#c62b23; --green:#159a52;
+  --red:#E5342B; --red-deep:#c62b23; --green:#159a52;
 
   /* tema claro (corpo datasheet) */
   --bg:#ffffff; --bg-2:#eef3fa; --surface:#ffffff; --surface-2:#f4f8fd;
@@ -50,7 +50,6 @@ button{font:inherit; color:inherit}
 h1,h2,h3{font-family:var(--font-display); font-weight:700; line-height:1.02; letter-spacing:-.01em}
 .display{font-size:clamp(2.9rem,7.6vw,6.9rem); font-weight:700; letter-spacing:-.018em; line-height:.97}
 .h2{font-size:clamp(1.8rem,3.8vw,3.2rem); font-weight:700}
-.h3{font-size:clamp(1.3rem,2.2vw,1.9rem); font-weight:600}
 
 /* KICKERS / rótulos — IBM Plex Mono, a voz de datasheet do sistema */
 .kicker{font-family:var(--font-mono); font-size:.72rem; letter-spacing:.16em;
@@ -188,7 +187,6 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .hero .lead b{color:#fff}
 .hero .btn-row{margin-top:36px}
 .hero .kicker{color:var(--sky-soft)} .hero .kicker::before{background:var(--sky-soft)}
-.hero .kicker[data-i]::after{color:var(--d-faint)}
 .hero .trust{margin-top:36px; font-family:var(--font-mono); font-size:.7rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase;
   color:var(--d-muted); display:flex; align-items:center; gap:12px; flex-wrap:wrap}
 .hero .trust .dot{width:4px;height:4px;border-radius:50%;background:var(--sky-soft)}
