@@ -253,17 +253,20 @@
     });
   }
 
-  // ---- HERO: vídeo de fundo (autoplay no desktop; mobile/saveData/reduce = só o poster, sem baixar o mp4) ----
+  // ---- HERO: vídeo de fundo. preload="none" no HTML mantém o mp4 (~2MB) FORA do
+  // caminho crítico; no desktop ele só começa a baixar/tocar após o load da página.
+  // Mobile/saveData/reduced-motion: nunca baixa — fica só o poster.
   (function heroVideo() {
     var v = document.querySelector('.hero-vid'); if (!v) return;
     var light = saveData || (window.matchMedia && (matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width:768px)').matches));
     if (light) {
-      v.removeAttribute('autoplay'); v.preload = 'none';
       var s = v.querySelector('source'); if (s) { s.removeAttribute('src'); v.removeChild(s); }
       try { v.load(); } catch (e) {}
-    } else {
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      return;
     }
+    function start() { try { v.load(); } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    if (document.readyState === 'complete') start();
+    else addEventListener('load', start, { once: true });
   })();
 
   // ---- SCROLL-SPY (aria-current na seção ativa) ----

@@ -28,13 +28,13 @@
   --font-mono:'IBM Plex Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
 
   --maxw:1320px; --pad:clamp(20px,4vw,72px);
-  --sec:clamp(88px,12vh,180px); --sec-tight:clamp(64px,8vh,116px);
+  --sec:clamp(88px,12vh,180px);
   --ease:cubic-bezier(.215,.61,.355,1); --ease-out:cubic-bezier(.16,1,.3,1);
   --radius:0;            /* cantos RETOS — sempre */
 }
 
 *{box-sizing:border-box; margin:0; padding:0}
-html{-webkit-text-size-adjust:100%; background:var(--bg-2)}
+html{-webkit-text-size-adjust:100%; background:var(--navy-ink)}  /* overscroll nas pontas mostra navy, nunca branco */
 /* sem scroll-behavior:smooth — o Lenis cuida da rolagem (CSS smooth + Lenis brigam e causam travamento) */
 body{
   background:var(--bg); color:var(--ink); font-family:var(--font-body);
@@ -67,7 +67,6 @@ section{position:relative}
    o JS (go() em main.js) já compensa a nav dinamicamente; isto cobre o fallback */
 section[id],footer[id]{scroll-margin-top:104px}
 .sec{padding:var(--sec) 0}
-.sec.tight{padding:var(--sec-tight) 0}
 .eyebrow-row{margin-bottom:28px}
 
 /* MARGINALIA — régua técnica vertical na CALHA externa ao wrap (só telas largas,
@@ -92,10 +91,10 @@ section[id],footer[id]{scroll-margin-top:104px}
 .cursor-dot{position:fixed; top:0; left:0; width:5px; height:5px; background:var(--navy); border-radius:50%;
   pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:background .3s}
 body.hovering .cursor{width:58px; height:58px; background:rgba(1,43,129,.08)}
-body.hovering-cta .cursor{width:58px; height:58px; border-color:var(--sky); background:rgba(30,115,190,.12)}
-body.hovering-cta .cursor-dot{background:var(--sky)}
+body.hovering-cta .cursor{width:58px; height:58px; border-color:var(--red); background:rgba(229,52,43,.08)}
+body.hovering-cta .cursor-dot{background:var(--red)}
 html:not(.cursor-custom) .cursor,html:not(.cursor-custom) .cursor-dot{display:none}  /* sem JS / pointer grosso: nenhum cursor falso congelado */
-html:not(.cursor-custom) .burger,html:not(.cursor-custom) .field input,html:not(.cursor-custom) .field select,html:not(.cursor-custom) .field textarea,html:not(.cursor-custom) .consent input{cursor:auto}
+html:not(.cursor-custom) .burger,html:not(.cursor-custom) .field input,html:not(.cursor-custom) .field select,html:not(.cursor-custom) .field textarea{cursor:auto}
 @media(hover:none){.cursor,.cursor-dot{display:none}}
 
 /* SCROLLBAR — trilho claro, thumb navy; cantos retos */
@@ -118,12 +117,12 @@ html{scrollbar-width:thin; scrollbar-color:var(--navy) var(--bg-2)}
 .lines.in .ln:nth-child(3) > span{transition-delay:.18s}
 .lines.in .ln:nth-child(4) > span{transition-delay:.27s}
 
-/* NAV — barra navy sólida; o logo (fundo #012A82) funde na barra; blur ao compactar */
+/* NAV — barra navy SÓLIDA (logo transparente branca funde em qualquer estado);
+   sem backdrop-filter (custo de perf + compõe mal com a logo). Ao rolar só encolhe + ganha sombra */
 .nav{position:fixed; inset:0 0 auto 0; z-index:100; padding:18px 0; background:var(--navy-logo);
   border-bottom:1px solid rgba(255,255,255,.1);
-  transition:padding .4s var(--ease),background .4s,box-shadow .4s}
-.nav.small{padding:11px 0; background:rgba(1,32,97,.92); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
-  box-shadow:0 10px 30px -16px rgba(0,0,0,.7)}
+  transition:padding .4s var(--ease),box-shadow .4s}
+.nav.small{padding:11px 0; box-shadow:0 10px 30px -16px rgba(0,0,0,.7)}
 .nav .row{display:flex; align-items:center; gap:24px}
 .nav .logo{height:46px; width:auto; transition:height .4s var(--ease); user-select:none; -webkit-user-drag:none}
 .nav.small .logo{height:38px}
@@ -135,8 +134,8 @@ html{scrollbar-width:thin; scrollbar-color:var(--navy) var(--bg-2)}
 .nav .links a.navlink:hover::after{transform:scaleX(1)}
 .nav .links a.navlink[aria-current="true"]{color:#fff}
 .nav .links a.navlink[aria-current="true"]::after{transform:scaleX(1)}
-.nav .links a.navbtn{font-family:var(--font-body); background:#fff; border-color:#fff; color:var(--navy)}
-.nav .links a.navbtn:hover{background:var(--bg-2); border-color:var(--bg-2)}
+.nav .links a.navbtn{font-family:var(--font-body); background:var(--red); border-color:var(--red); color:#fff}
+.nav .links a.navbtn:hover{background:var(--red-deep); border-color:var(--red-deep)}
 
 /* hamburger */
 .burger{display:none; margin-left:auto; width:44px; height:44px; border:1px solid rgba(255,255,255,.3); background:transparent; place-items:center; cursor:none}
@@ -154,71 +153,69 @@ body.menu-open .burger span::after{top:0; transform:rotate(-45deg)}
 body.menu-open .drawer{opacity:1; pointer-events:auto; transform:none}
 body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu modal está aberto */
 .drawer a{font-family:var(--font-display); font-weight:600; font-size:clamp(1.8rem,7vw,2.6rem); color:var(--d-text); padding:10px 0; border-bottom:1px solid var(--d-line-2)}
-.drawer a.navbtn{color:var(--sky-soft); border-bottom:0; margin-top:14px}
+.drawer a.navbtn{color:var(--red); border-bottom:0; margin-top:14px}
 @media(max-width:1024px){
   .nav .links{display:none}
   .burger{display:grid}
 }
 
-/* BOTÕES — azul royal DRC = eixo de conversão (decisão do usuário; vermelho é SÓ semântico) */
+/* BOTÕES — vermelho = eixo único de conversão (funciona no claro e no navy) */
 .btn{display:inline-flex; align-items:center; gap:11px; font-family:var(--font-body);
   font-weight:600; font-size:1rem; letter-spacing:.005em; padding:15px 26px;
-  border:1px solid var(--navy); background:var(--navy); color:#fff; border-radius:var(--radius);
+  border:1px solid var(--red); background:var(--red); color:#fff; border-radius:var(--radius);
   position:relative; transition:transform .3s var(--ease),background .3s,border-color .3s}
 .btn svg{width:18px; height:18px}
 .btn .ar{transition:transform .3s var(--ease)}
-.btn:hover{background:var(--sky); border-color:var(--sky)} .btn:hover .ar{transform:translateX(4px)}
-/* nas seções ESCURAS (Obra/faixa navy) o botão vira branco p/ não sumir no fundo azul */
-.cine .btn,.midcta .btn{background:#fff; border-color:#fff; color:var(--navy)}
-.cine .btn:hover,.midcta .btn:hover{background:var(--bg-2); border-color:var(--bg-2)}
+.btn:hover{background:var(--red-deep); border-color:var(--red-deep)} .btn:hover .ar{transform:translateX(4px)}
 .btn.big{padding:18px 32px; font-size:1.06rem}
 .btn-row{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
 .btn:focus-visible,a:focus-visible,summary:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--sky); outline-offset:3px}
 
-/* HERO — CLARO (decisão do usuário): vídeo sob véu branco assimétrico (denso no
-   texto, aberto na imagem), texto navy, display gigante */
-.hero{position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center; overflow:hidden; padding:150px 0 110px; background:var(--bg-2)}
+/* HERO — a página abre NAVY: vídeo sob scrim escuro assimétrico (denso no texto,
+   aberto na imagem), texto branco SEM halo, display gigante, um CTA vermelho */
+.hero{position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center; overflow:hidden; padding:150px 0 110px; background:var(--navy-ink)}
 .hero-bg{position:absolute; inset:0; z-index:0}
 .hero-bg img,.hero-bg video{width:100%; height:100%; object-fit:cover; display:block}
 .hero-bg::after{content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,#f7fafd 0%,rgba(247,250,253,.98) 42%,rgba(247,250,253,.9) 60%,rgba(247,250,253,.55) 80%,rgba(247,250,253,.16) 100%),
-             linear-gradient(0deg,rgba(247,250,253,.7),transparent 44%)}
+  background:linear-gradient(90deg,rgba(1,10,32,.93) 0%,rgba(1,13,38,.86) 38%,rgba(1,13,38,.52) 66%,rgba(1,13,38,.22) 100%),
+             linear-gradient(0deg,rgba(1,13,38,.88) 0%,transparent 42%),
+             linear-gradient(180deg,rgba(1,13,38,.55),transparent 30%)}
 .hero .wrap{position:relative; z-index:2; width:100%}
 .hero-text{max-width:760px}
-.hero h1{color:var(--ink); max-width:14ch}
-.hero h1 .g{color:var(--navy)}
-.hero .lead{margin-top:26px; max-width:48ch; color:#36435d}
-.hero .lead b{color:var(--ink)}
+.hero h1{color:#fff; max-width:14ch}
+.hero h1 .g{color:var(--sky-soft)}
+.hero .lead{margin-top:26px; max-width:48ch; color:var(--d-muted)}
+.hero .lead b{color:#fff}
 .hero .btn-row{margin-top:36px}
-.hero .kicker{color:var(--navy); font-weight:600} .hero .kicker::before{background:var(--navy)}
-.hero .kicker[data-i]::after{color:var(--faint)}
+.hero .kicker{color:var(--sky-soft)} .hero .kicker::before{background:var(--sky-soft)}
+.hero .kicker[data-i]::after{color:var(--d-faint)}
 .hero .trust{margin-top:36px; font-family:var(--font-mono); font-size:.7rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--ink); display:flex; align-items:center; gap:12px; flex-wrap:wrap}
-.hero .trust .dot{width:4px;height:4px;border-radius:50%;background:var(--navy)}
-.hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:var(--navy); padding:10px 2px; border-bottom:2px solid rgba(1,43,129,.32); transition:color .25s,border-color .25s}
+  color:var(--d-muted); display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.hero .trust .dot{width:4px;height:4px;border-radius:50%;background:var(--sky-soft)}
+.hero-textlink{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-weight:600; font-size:1rem; color:#fff; padding:10px 2px; border-bottom:2px solid rgba(255,255,255,.35); transition:color .25s,border-color .25s}
 .hero-textlink .ar{transition:transform .3s var(--ease)}
-.hero-textlink:hover{border-bottom-color:var(--navy)} .hero-textlink:hover .ar{transform:translateY(3px)}
+.hero-textlink:hover{border-bottom-color:#fff} .hero-textlink:hover .ar{transform:translateY(3px)}
 /* HUD — micro-labels técnicos pinados nas bordas do hero (padrão igloo/blueprint) */
 .hero-hud{position:absolute; left:0; right:0; bottom:26px; z-index:2; display:flex; justify-content:space-between; gap:16px;
-  padding:0 var(--pad); font-family:var(--font-mono); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); pointer-events:none}
-.hero-hud .cue{display:inline-flex; align-items:center; gap:10px; color:var(--muted)}
-.hero-hud .cue::after{content:""; width:1px; height:34px; background:linear-gradient(180deg,var(--navy),transparent); animation:cueDrop 1.8s var(--ease) infinite}
+  padding:0 var(--pad); font-family:var(--font-mono); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--d-faint); pointer-events:none}
+.hero-hud .cue{display:inline-flex; align-items:center; gap:10px; color:var(--d-muted)}
+.hero-hud .cue::after{content:""; width:1px; height:34px; background:linear-gradient(180deg,var(--sky-soft),transparent); animation:cueDrop 1.8s var(--ease) infinite}
 @keyframes cueDrop{0%{transform:scaleY(0); transform-origin:top}45%{transform:scaleY(1); transform-origin:top}55%{transform:scaleY(1); transform-origin:bottom}100%{transform:scaleY(0); transform-origin:bottom}}
 @media(max-width:860px){
   .hero{padding:128px 0 96px; align-items:flex-end}
   .hero-text{max-width:none}
-  .hero-bg::after{background:linear-gradient(0deg,rgba(247,250,253,.98) 48%,rgba(247,250,253,.86) 72%,rgba(247,250,253,.64) 100%),linear-gradient(90deg,rgba(247,250,253,.6),transparent 82%)}
+  .hero-bg::after{background:linear-gradient(0deg,rgba(1,10,32,.95) 30%,rgba(1,13,38,.72) 62%,rgba(1,13,38,.35) 100%),linear-gradient(180deg,rgba(1,13,38,.6),transparent 32%)}
   .hero-hud{display:none}
 }
 
-/* CREDIBILITY STRIP — claro, com réguas verticais; counters ≠ selos */
-.strip{background:var(--bg-2); border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+/* CREDIBILITY STRIP — continua o bloco escuro da abertura; counters ≠ selos */
+.strip{background:var(--navy-ink); border-top:1px solid var(--d-line-2); border-bottom:1px solid var(--d-line-2)}
 .strip .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:0; padding-top:0; padding-bottom:0}
-.strip .item{display:flex; flex-direction:column; gap:4px; padding:30px 28px; border-left:1px solid var(--line-2)}
+.strip .item{display:flex; flex-direction:column; gap:4px; padding:30px 28px; border-left:1px solid var(--d-line-2)}
 .strip .item:first-child{border-left:0; padding-left:0}
-.strip .item b{font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--ink); line-height:1; font-variant-numeric:tabular-nums}
-.strip .item b.tag{font-family:var(--font-mono); font-size:1.05rem; font-weight:600; letter-spacing:.08em; color:var(--navy); padding-top:8px}
-.strip .item span{font-family:var(--font-mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
+.strip .item b{font-family:var(--font-display); font-size:2rem; font-weight:700; color:#fff; line-height:1; font-variant-numeric:tabular-nums}
+.strip .item b.tag{font-family:var(--font-mono); font-size:1.05rem; font-weight:600; letter-spacing:.08em; color:var(--sky-soft); padding-top:8px}
+.strip .item span{font-family:var(--font-mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--d-faint)}
 @media(max-width:760px){
   .strip .wrap{grid-template-columns:1fr 1fr}
   .strip .item{padding:22px 18px}
@@ -290,7 +287,7 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .seg::after{content:""; position:absolute; inset:0; z-index:-1; transition:opacity .5s var(--ease);
   background:linear-gradient(0deg,rgba(2,10,30,.88) 4%,rgba(2,10,30,.42) 46%,rgba(2,10,30,.12))}
 .seg:hover .bg img{transform:scale(1.05); filter:brightness(1.04)}
-.seg .top-rule{position:absolute; top:0; left:0; height:3px; width:0; background:var(--sky); transition:width .5s var(--ease)}
+.seg .top-rule{position:absolute; top:0; left:0; height:3px; width:0; background:var(--red); transition:width .5s var(--ease)}
 .seg:hover .top-rule{width:100%}
 .seg .seg-no{position:absolute; top:18px; right:20px; font-family:var(--font-display); font-weight:700; font-size:clamp(2.4rem,3.4vw,3.2rem); line-height:1; color:rgba(255,255,255,.42); transition:color .4s; font-variant-numeric:tabular-nums; text-shadow:0 1px 14px rgba(2,10,30,.55)}
 .seg:hover .seg-no{color:rgba(255,255,255,.75)}
@@ -357,7 +354,7 @@ body.menu-open{overflow:hidden}   /* trava o scroll do fundo enquanto o menu mod
 .form{display:flex; flex-direction:column; gap:16px}
 .field{display:flex; flex-direction:column; gap:7px}
 .field.row2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-.field label,.f-lab{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.field label{font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
 .field input,.field select,.field textarea{width:100%; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
   padding:14px 16px; color:var(--ink); font-family:var(--font-body); font-size:1rem; cursor:none; transition:border-color .25s,box-shadow .25s}
 .field textarea{min-height:110px; resize:vertical}
@@ -397,15 +394,15 @@ a.ci-card:hover{border-color:var(--navy); background:#fff}
 @media(max-width:760px){.foot .top{grid-template-columns:1fr 1fr} .foot .fcol.brand{grid-column:1 / -1}}
 @media(max-width:460px){.foot .top{grid-template-columns:1fr}}
 
-/* floating CTA — azul royal, mesmo eixo de conversão dos demais botões */
+/* floating CTA — vermelho, mesmo eixo de conversão */
 .cta-float{position:fixed; z-index:90; left:16px; right:16px; bottom:calc(16px + env(safe-area-inset-bottom));
   display:none; gap:10px; opacity:0; transform:translateY(20px); pointer-events:none;
   transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .cta-float a{flex:1; display:inline-flex; align-items:center; justify-content:center; gap:9px;
   font-family:var(--font-body); font-weight:600; font-size:.98rem; padding:15px 16px; color:#fff;
   border:1px solid rgba(255,255,255,.5); box-shadow:0 12px 30px -14px rgba(1,13,38,.7)}
-.cta-float .cf-orc{background:var(--navy)}
-.cta-float .cf-orc:hover{background:var(--sky)}
+.cta-float .cf-orc{background:var(--red)}
+.cta-float .cf-orc:hover{background:var(--red-deep)}
 .cta-float.show{opacity:1; transform:none; pointer-events:auto}
 @media(max-width:860px){.cta-float{display:flex}}
 @media(min-width:861px){.cta-float{display:flex; left:auto; right:24px; bottom:24px; width:auto}
@@ -505,7 +502,7 @@ html.cursor-custom .qa summary{cursor:none}
   .form{order:2}
 }
 /* QW5 — após o envio, some o formulário e fica só a confirmação (evita reenvio/2 conversas) */
-.form.sent .field,.form.sent .row2,.form.sent .consent,.form.sent .form-trust,
+.form.sent .field,.form.sent .row2,.form.sent .form-trust,
 .form.sent #formSend,.form.sent .form-note,.form.sent .form-err{display:none}
 .form.sent{gap:0}
 
@@ -564,9 +561,9 @@ html.cursor-custom .qa summary{cursor:none}
   .lines .ln > span{transform:none !important}
   .fleet-ds .ds-bar i{transform:none !important}
   body{cursor:auto}
-  .cursor,.cursor-dot,.scroll-cue{display:none}
+  .cursor,.cursor-dot{display:none}
   .seg .bg img{transform:none !important}
 }
 @media(hover:none){
-  .qa summary,.btn,.field input,.field select,.field textarea,.consent input{cursor:auto}
+  .qa summary,.btn,.field input,.field select,.field textarea{cursor:auto}
 }
